@@ -41,7 +41,7 @@ jobs:
         uses: mad9000/actions-find-and-replace-string@3
         id: branch_no_small_suffix
         with:
-          source: ${{ steps.branch_no_small_suffix.outputs.value }}
+          source: ${{ steps.branch_no_nixos_prefix.outputs.value }}
           find: '-small'
           replace: ''
       - name: Run find-and-replace to remove refs/heads/

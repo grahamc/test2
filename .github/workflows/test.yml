@@ -26,7 +26,8 @@ jobs:
     steps:
 
       - name: Flake name
-        run: echo "The replaced value is nixpkgs${{
+        run: |
+          echo "The replaced value is nixpkgs${{
           (
             (endsWith(matrix.branch, '-small') && '-small')
             || (endsWith(matrix.branch, '-darwin') && '-darwin')

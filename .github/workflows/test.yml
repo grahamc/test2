@@ -32,7 +32,7 @@ jobs:
             (endsWith(matrix.branch, '-small') && '-small')
             || (endsWith(matrix.branch, '-darwin') && '-darwin')
             || ((matrix.branch == 'nixpkgs-unstable') && '-unstable')
-            || ""
+            || ''
           )}}"
 
       - name: Version - Remove nixpkgs-

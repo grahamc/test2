@@ -1,23 +1,11 @@
 on:
-  - push
-  - workflow_dispatch
+  push:
+    branches:
+      - nixos-**
+      - nixpkgs-**
 
 jobs:
   find-and-replace-job:
-    strategy:
-        fail-fast: false
-        matrix:
-          include:
-            - branch: nixos-unstable
-            - branch: nixos-unstable-small
-            - branch: nixpkgs-unstable
-            - branch: nixos-23.05
-            - branch: nixos-23.05-small
-            - branch: nixpkgs-23.05-darwin
-            - branch: nixos-22.11
-            - branch: nixos-22.11-small
-            - branch: nixpkgs-22.11-darwin
-
     runs-on: ubuntu-latest
     name: 'Push'
     permissions:
@@ -29,7 +17,7 @@ jobs:
         uses: mad9000/actions-find-and-replace-string@3
         id: branch_no_nixpkgs_prefix
         with:
-          source: ${{ matrix.branch }}
+          source: ${{ github.ref_name }}
           find: 'nixpkgs-'
           replace: ''
       - name: Version - Remove nixos-

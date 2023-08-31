@@ -1,0 +1,63 @@
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  find-and-replace-job:
+    strategy:
+        fail-fast: false
+        matrix:
+          include:
+            - branch: nixos-unstable      
+            - branch: nixos-unstable-small
+            - branch: nixpkgs-unstable    
+            - branch: nixos-23.05         
+            - branch: nixos-23.05-small   
+            - branch: nixpkgs-23.05-darwin
+            - branch: nixos-22.11         
+            - branch: nixos-22.11-small   
+            - branch: nixpkgs-22.11-darwin
+
+    runs-on: ubuntu-latest
+    name: 'Find and replace on a string'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run find-and-replace to remove refs/heads/
+        uses: mad9000/actions-find-and-replace-string@3
+        id: branch_no_nixpkgs_prefix
+        with:
+          source: ${{ matrix.branch }}
+          find: 'nixpkgs-'
+          replace: ''
+      - name: Run find-and-replace to remove refs/heads/
+        uses: mad9000/actions-find-and-replace-string@3
+        id: branch_no_nixos_prefix
+        with:
+          source: ${{ steps.branch_no_nixpkgs_prefix.outputs.value }}
+          find: 'nixos-'
+          replace: ''
+      - name: Run find-and-replace to remove refs/heads/
+        uses: mad9000/actions-find-and-replace-string@3
+        id: branch_no_small_suffix
+        with:
+          source: ${{ steps.branch_no_small_suffix.outputs.value }}
+          find: '-small'
+          replace: ''
+      - name: Run find-and-replace to remove refs/heads/
+        uses: mad9000/actions-find-and-replace-string@3
+        id: branch_no_darwin_suffix
+        with:
+          source: ${{ steps.branch_no_small_suffix.outputs.value }}
+          find: '-darwin'
+          replace: ''
+      - name: Run find-and-replace to remove refs/heads/
+        uses: mad9000/actions-find-and-replace-string@3
+        id: version
+        with:
+          source: ${{ steps.branch_no_darwin_suffix.outputs.value }}
+          find: '.'
+          replace: ''
+
+      - name: Get the final output
+        run: echo "The replaced value is ${{ steps.version.outputs.value }}"

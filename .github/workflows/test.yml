@@ -73,15 +73,7 @@ jobs:
       - uses: "DeterminateSystems/magic-nix-cache-action@main"
       - uses: "DeterminateSystems/flakehub-push@main"
         with:
-          name: |
-            "NixOS/${{
-            (
-              (endsWith(matrix.branch, '-small') && '-small')
-              || (endsWith(matrix.branch, '-darwin') && '-darwin')
-              || ((matrix.branch == 'nixpkgs-unstable') && '-unstable')
-              || ''
-            )}}"
-
+          name: NixOS/nixpkgs${{((endsWith(matrix.branch, '-small') && '-small') || (endsWith(matrix.branch, '-darwin') && '-darwin') || ((matrix.branch == 'nixpkgs-unstable') && '-unstable') || '')}}
           visibility: public
           rolling: true
           rolling-minor: ${{ steps.minor_version.outputs.value }}

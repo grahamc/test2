@@ -8,14 +8,14 @@ jobs:
         fail-fast: false
         matrix:
           include:
-            - branch: nixos-unstable      
+            - branch: nixos-unstable
             - branch: nixos-unstable-small
-            - branch: nixpkgs-unstable    
-            - branch: nixos-23.05         
-            - branch: nixos-23.05-small   
+            - branch: nixpkgs-unstable
+            - branch: nixos-23.05
+            - branch: nixos-23.05-small
             - branch: nixpkgs-23.05-darwin
-            - branch: nixos-22.11         
-            - branch: nixos-22.11-small   
+            - branch: nixos-22.11
+            - branch: nixos-22.11-small
             - branch: nixpkgs-22.11-darwin
 
     runs-on: ubuntu-latest
@@ -24,16 +24,6 @@ jobs:
       id-token: "write"
       contents: "read"
     steps:
-
-      - name: Flake name
-        run: |
-          echo "The replaced value is nixpkgs${{
-          (
-            (endsWith(matrix.branch, '-small') && '-small')
-            || (endsWith(matrix.branch, '-darwin') && '-darwin')
-            || ((matrix.branch == 'nixpkgs-unstable') && '-unstable')
-            || ''
-          )}}"
 
       - name: Version - Remove nixpkgs-
         uses: mad9000/actions-find-and-replace-string@3
@@ -78,6 +68,20 @@ jobs:
           find: 'unstable'
           replace: '1'
 
+      - uses: "actions/checkout@v3"
+      - uses: "DeterminateSystems/nix-installer-action@main"
+      - uses: "DeterminateSystems/magic-nix-cache-action@main"
+      - uses: "DeterminateSystems/flakehub-push@main"
+        with:
+          name: |
+            "NixOS/${{
+            (
+              (endsWith(matrix.branch, '-small') && '-small')
+              || (endsWith(matrix.branch, '-darwin') && '-darwin')
+              || ((matrix.branch == 'nixpkgs-unstable') && '-unstable')
+              || ''
+            )}}"
 
-      - name: Get the final output
-        run: echo "The replaced value is ${{ steps.minor_version.outputs.value }}"
+          visibility: public
+          rolling: true
+          rolling-minor: ${{ steps.minor_version.outputs.value }}

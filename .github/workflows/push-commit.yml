@@ -19,6 +19,7 @@ jobs:
       - uses: "DeterminateSystems/flakehub-push@main"
         with:
           name: grahamc/test2
+          repository: NixOS/nixpkgs
           visibility: public
           rolling: true
           rolling-minor: 2305

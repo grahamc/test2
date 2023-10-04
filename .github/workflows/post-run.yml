@@ -1,4 +1,4 @@
-name: "Post-run chehcking"
+name: "Post-run checking"
 on:
   push:
     branches:
@@ -6,12 +6,9 @@ on:
 jobs:
   pass:
     runs-on: "ubuntu-latest"
-    permissions:
-      id-token: "write"
-      contents: "read"
     steps:
       - uses: "actions/checkout@v3"
-      - uses: "DeterminateSystems/nix-installer-action@post-run-diagnostics"
+      - uses: "DeterminateSystems/nix-installer-action@main"
       - run: exit 0
       
   fail:
@@ -21,5 +18,5 @@ jobs:
       contents: "read"
     steps:
       - uses: "actions/checkout@v3"
-      - uses: "DeterminateSystems/nix-installer-action@post-run-diagnostics"
+      - uses: "DeterminateSystems/nix-installer-action@main"
       - run: exit 1

@@ -1,0 +1,25 @@
+name: "Post-run chehcking"
+on:
+  push:
+    branches:
+      - "post-run"
+jobs:
+  pass:
+    runs-on: "ubuntu-latest"
+    permissions:
+      id-token: "write"
+      contents: "read"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "DeterminateSystems/nix-installer-action@post-run-diagnostics"
+      - run: exit 0
+      
+  fail:
+    runs-on: "ubuntu-latest"
+    permissions:
+      id-token: "write"
+      contents: "read"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "DeterminateSystems/nix-installer-action@post-run-diagnostics"
+      - run: exit 1

@@ -9,14 +9,9 @@ jobs:
     steps:
       - uses: "actions/checkout@v3"
       - uses: "DeterminateSystems/nix-installer-action@main"
-      - run: exit 0
-      
-  fail:
-    runs-on: "ubuntu-latest"
-    permissions:
-      id-token: "write"
-      contents: "read"
-    steps:
-      - uses: "actions/checkout@v3"
-      - uses: "DeterminateSystems/nix-installer-action@main"
-      - run: exit 1
+        with:
+          nix-installer-tag: v0.13.0
+      - run: nix --version
+      - run: nix develop nixpkgs#git -c sh -c "echo hi"
+      - run: nix-collect-garbage -d
+      - run: nix develop nixpkgs#git -c sh -c "echo hi"

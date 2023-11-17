@@ -30,7 +30,7 @@ jobs:
       - name: Create tag
         uses: actions/github-script@v7
         env:
-            TAG_NAME: v${{ steps.nixinstaller.outputs.tag }}+rev.${github.sha}+r.${github.run_id}+n.${github.run_number}+a.${github.run_attempt}
+            TAG_NAME: ${{ steps.nixinstaller.outputs.tag }}+rev.${{ github.sha }}+r.${{ github.run_id }}+n.${{ github.run_number }}+a.${{ github.run_attempt }}
         with:
           script: |
             const {TAG_NAME} = process.env
@@ -45,7 +45,7 @@ jobs:
         uses: softprops/action-gh-release@v0.1.15
         with:
           # files: Release.txt
-          tag_name: v${{ steps.nixinstaller.outputs.tag }}+rev.${github.sha}+r.${github.run_id}+n.${github.run_number}+a.${github.run_attempt}
+          tag_name: ${{ steps.nixinstaller.outputs.tag }}+rev.${{ github.sha }}+r.${{ github.run_id }}+n.${{ github.run_number }}+a.${{ github.run_attempt }}
           target_commitish: ${github.sha}
 
 

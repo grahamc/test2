@@ -27,20 +27,6 @@ jobs:
           repository: DeterminateSystems/nix-installer
           releases-only: true
 
-      - name: Create tag
-        uses: actions/github-script@v7
-        env:
-            TAG_NAME: ${{ steps.nixinstaller.outputs.tag }}+rev.${{ github.sha }}+r.${{ github.run_id }}+n.${{ github.run_number }}+a.${{ github.run_attempt }}
-        with:
-          script: |
-            const {TAG_NAME} = process.env
-
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: `refs/tags/${TAG_NAME}`,
-              sha: context.sha
-            })
       - name: Release
         uses: softprops/action-gh-release@v0.1.15
         with:

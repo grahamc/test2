@@ -46,6 +46,6 @@ jobs:
         with:
           # files: Release.txt
           tag_name: ${{ steps.nixinstaller.outputs.tag }}+rev.${{ github.sha }}+r.${{ github.run_id }}+n.${{ github.run_number }}+a.${{ github.run_attempt }}
-          target_commitish: ${github.sha}
+          target_commitish: ${{ github.sha }}
 
 

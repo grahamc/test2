@@ -1,0 +1,51 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "*"
+    tags:
+      - "v*.*.*"
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - labeled
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write # In order to request a JWT for AWS auth
+    steps:
+      - id: nixinstaller
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: DeterminateSystems/nix-installer
+          releases-only: true
+
+      - name: Create tag
+        uses: actions/github-script@v7
+        env:
+            TAG_NAME: v${{ steps.nixinstaller.outputs.tag }}+rev.${github.sha}+r.${github.run_id}+n.${github.run_number}+a.${github.run_attempt}
+        with:
+          script: |
+            const {TAG_NAME} = process.env
+
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${TAG_NAME}`,
+              sha: context.sha
+            })
+      - name: Release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          # files: Release.txt
+          tag_name: v${{ steps.nixinstaller.outputs.tag }}+rev.${github.sha}+r.${github.run_id}+n.${github.run_number}+a.${github.run_attempt}
+          target_commitish: ${github.sha}
+
+

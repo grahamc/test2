@@ -11,6 +11,6 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@main
         with:
-          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux"
+          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux
       - run: |
             nix build "https://flakehub.com/f/DeterminateSystems/fh/0.1.9.tar.gz"

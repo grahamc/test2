@@ -1,0 +1,16 @@
+name: Try Lix in GHA
+on:
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: "write"
+      contents: "read"
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          source-url: https://install.lix.systems/lix/lix-installer-x86_64-linux"
+      - run: |
+            nix build "https://flakehub.com/f/DeterminateSystems/fh/0.1.9.tar.gz"

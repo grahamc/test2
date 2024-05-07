@@ -1,6 +1,5 @@
 name: Context testing
 on:
-  push:
   pull_request:
     types:
       - opened
@@ -16,7 +15,7 @@ jobs:
       matrix:
         a: [1, 2]
         b: [3, 4]
-      
+
     runs-on: ubuntu-latest
     steps:
       - name: Dump general environment

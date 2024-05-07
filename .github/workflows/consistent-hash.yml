@@ -1,4 +1,3 @@
-name: "check install hash"
 on:
   workflow_dispatch:
 

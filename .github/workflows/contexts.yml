@@ -1,4 +1,3 @@
-name: Context testing
 on:
   pull_request:
     types:

@@ -12,4 +12,3 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: |
           cat /home/runner/.config/nix/nix.conf
-          cat /home/runner/work/_temp/magic-nix-cache-netrc

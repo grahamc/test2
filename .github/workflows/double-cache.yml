@@ -1,0 +1,14 @@
+name: update-flake-lock
+on:
+  workflow_dispatch: # allows manual triggering
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - run: echo hi

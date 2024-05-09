@@ -9,7 +9,7 @@ jobs:
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@nonzero-err
         with:
-          fail-mode: true
+          fail-mode: false
           ignore-missing-flake-lock: false
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@main

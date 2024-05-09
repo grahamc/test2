@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@main
       - name: Check Nix flake inputs
-        uses: DeterminateSystems/flake-checker-action@nonzero-error
+        uses: DeterminateSystems/flake-checker-action@nonzero-err
         with:
           fail-mode: true
           ignore-missing-flake-lock: false

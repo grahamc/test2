@@ -3,6 +3,9 @@ on:
 
 jobs:
   lockfile:
+    permissions:
+      contents: write # to push the branch for the PR
+      pull-requests: write # to open the PR
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

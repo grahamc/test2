@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch: # allows manual triggering
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repo: grahamc/r13y.com
+      - uses: actions/checkout@v4
+      - run: |
+          git status
+
+      - uses: actions/checkout@v4
+        with:
+          repo: grahamc/r13y.com
+      - run: |
+          git status

@@ -7,13 +7,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repo: grahamc/r13y.com
+          repository: grahamc/r13y.com
+      - run: git show HEAD
+      
       - uses: actions/checkout@v4
+      - run: git show HEAD
       - run: |
           git status
 
       - uses: actions/checkout@v4
         with:
-          repo: grahamc/r13y.com
+          repository: grahamc/r13y.com
+      - run: git show HEAD
       - run: |
           git status

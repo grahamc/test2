@@ -23,7 +23,7 @@ jobs:
           nix eval --json \
                --override-input flake '.' \
                --no-write-lock-file 'https://flakehub.com/f/DeterminateSystems/inspect/*#contents.excludingOutputPaths' \
-           | nix run nixpkgs#jq -- --argjson map '{
+           | nix run nixpkgs#jq -- --raw-output --argjson map '{
                "aarch64-darwin": "macos-latest-xlarge",
                "aarch64-linux": "UbuntuLatest32Cores128GArm",
                "x86_64-darwin": "macos-latest-xlarge",

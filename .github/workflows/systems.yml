@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      matrix: $
+      matrix: ${{ steps.inventory.outputs.matrix }}
 
     permissions:
       id-token: "write"
@@ -18,7 +18,7 @@ jobs:
         with:
           flakehub: true
       - name: Inventory the flake for targeted systems
-        id: matrix
+        id: inventory
         run: |
           nix eval --json \
                --override-input flake '.' \

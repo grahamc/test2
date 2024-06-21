@@ -53,10 +53,11 @@ jobs:
            ' >> "$GITHUB_OUTPUT"
 
   build:
-    runs-on: ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.systems.runs-on }}
     needs: inventory
     strategy:
-      matrix: ${{ fromJSON(needs.inventory.outputs.matrix) }}
+      matrix:
+        systems: ${{ fromJSON(needs.inventory.outputs.matrix) }}
 
     permissions:
       id-token: "write"
@@ -68,5 +69,5 @@ jobs:
         with:
           flakehub: true
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - name: Build for ${{ matrix.nix-systems }}
+      - name: Build for ${{ matrix.systems.nix-systems }}
         run: nix build -L

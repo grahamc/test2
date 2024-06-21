@@ -1,0 +1,72 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+
+    outputs:
+      matrix: $
+
+    permissions:
+      id-token: "write"
+      contents: "read"
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          flakehub: true
+      - name: Inventory the flake for targeted systems
+        id: matrix
+        run: |
+          nix eval --json \
+               --override-input flake '.' \
+               --no-write-lock-file 'https://flakehub.com/f/DeterminateSystems/inspect/*#contents.excludingOutputPaths' \
+           | nix run nixpkgs#jq -- --argjson map '{
+               "aarch64-darwin": "macos-latest-xlarge",
+               "aarch64-linux": "UbuntuLatest32Cores128GArm",
+               "x86_64-darwin": "macos-latest-xlarge",
+               "x86_64-linux": "UbuntuLatest32Cores128G"
+               }' '
+           [(
+           .
+           | recurse
+           | select (type == "object" and has("forSystems"))
+           | .forSystems[]
+           )]
+           | sort
+           | unique
+           | map(
+               { "nix-system": ., "runs-on": $map[.]}
+               | if ."runs-on" == null then
+                   ("No GitHub Actions Runner system known for the Nix system `" + ."nix-system" + ."`.\n") | halt_error
+               else
+                   .
+               end
+           )
+           | group_by(."runs-on") | map({
+           "nix-systems": map(.["nix-system"]) | sort | join(", "),
+           "runs-on": .[0]["runs-on"]
+           })
+           | "matrix=" + tostring
+           ' >> "$GITHUB_OUTPUT"
+
+  build:
+    runs-on: ${{ matrix.runs-on }}
+    needs: inventory
+    strategy:
+      matrix: ${{ fromJSON(needs.inventory.outputs.matrix) }}
+
+    permissions:
+      id-token: "write"
+      contents: "read"
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          flakehub: true
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Build for ${{ matrix.nix-systems }}
+        run: nix build -L

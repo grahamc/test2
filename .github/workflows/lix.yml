@@ -12,6 +12,17 @@ jobs:
       ACTIONS_STEP_DEBUG: "true"
     steps:
       - uses: actions/checkout@v4.1.1
+      - uses: actions/cache@v3
+        with:
+          path: ~/lixcat
+          key: determinatesystem-nix-installer-x86_64-linux-37b484b605499fdebf3e1c88d2ec4336
+      - run: |
+            set +e
+            set -x
+            ls ~/lixcat
+            cat ~/lixcat
+            cat ~/lixcat/*
+
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           source-url: https://install.lix.systems/lix

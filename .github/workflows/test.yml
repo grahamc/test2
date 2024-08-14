@@ -9,9 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          source-pr: 1084
       - uses: DeterminateSystems/flake-checker-action@pre
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           use-gha-cache: false
+          source-pr: 83
       - run: |
           nix build "https://flakehub.com/f/DeterminateSystems/fh/0.1.9.tar.gz"

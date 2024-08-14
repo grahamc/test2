@@ -11,10 +11,11 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           source-pr: 1084
+          extra-args: --determinate
       - uses: DeterminateSystems/flake-checker-action@pre
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
           use-gha-cache: false
           source-pr: 83
       - run: |
-          nix build "https://flakehub.com/f/DeterminateSystems/fh/0.1.9.tar.gz"
+          nix build "https://flakehub.com/f/FriendsOfOpenTelemetry/opentelemetry-nix/1.1.4.tar.gz"

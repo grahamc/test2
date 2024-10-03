@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+jobs:
+  pass:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+          oogabooga: ${{ toJson(job) }}
+      - run: exit 0
+
+  fail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+          oogabooga: ${{ toJson(job) }}
+      - run: exit 1

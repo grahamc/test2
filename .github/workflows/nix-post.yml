@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
+        with:
           oogabooga: ${{ toJson(job) }}
       - run: exit 0
 
@@ -12,5 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
+        with:
           oogabooga: ${{ toJson(job) }}
       - run: exit 1

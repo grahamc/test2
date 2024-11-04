@@ -4,8 +4,8 @@ on:
 jobs:
   fhstatus:
     permissions:
-      contents: write # to push the branch for the PR
-      pull-requests: write # to open the PR
+      id-token: write # Authenticate against FlakeHub
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

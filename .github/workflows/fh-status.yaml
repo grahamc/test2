@@ -14,4 +14,4 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
         with:
           determinate: true
-      - run: nix flake run "https://flakehub.com/f/DeterminateSystems/fh/0.1" -- status
+      - run: nix run "https://flakehub.com/f/DeterminateSystems/fh/0.1" -- status

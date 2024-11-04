@@ -14,5 +14,6 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
         with:
           determinate: true
+      - run: determinate-nixd status
       - run: nix run "github:DeterminateSystems/fh" -- status
       - run: nix run "https://flakehub.com/f/DeterminateSystems/fh/0.1" -- status

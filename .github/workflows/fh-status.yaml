@@ -2,7 +2,7 @@ on:
   workflow_dispatch: # allows manual triggering
 
 jobs:
-  lockfile:
+  fhstatus:
     permissions:
       contents: write # to push the branch for the PR
       pull-requests: write # to open the PR

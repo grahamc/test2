@@ -13,7 +13,7 @@
       pkgs = import nixpkgs { inherit system; };
     in {
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [ terraform go_1_20 ];
+        packages = with pkgs; [ tofu ];
       };
     };
 }

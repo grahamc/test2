@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  DeterminateCI:
+    uses: DeterminateSystems/ci/.github/workflows/workflow.yml@graham/fh-432-determinatesystemsci-workflow-should-expose-rolling-minor
+    permissions:
+      id-token: "write"
+      contents: "read"
+    with:
+      name: grahamc/test2-renamed
+      visibility: private

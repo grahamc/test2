@@ -13,7 +13,7 @@
       pkgs = import nixpkgs { inherit system; };
     in {
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [ tofu ];
+        packages = with pkgs; [ hello git ];
       };
     };
 }

@@ -13,4 +13,4 @@ jobs:
       contents: "read"
     with:
       name: grahamc/test2-renamed
-      visibility: private
+      visibility: public

@@ -7,5 +7,3 @@ jobs:
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
-        with:
-          source-pr: 110

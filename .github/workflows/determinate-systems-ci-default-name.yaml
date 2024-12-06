@@ -17,5 +17,7 @@ jobs:
   boop:
     needs: DeterminateCI
     runs-on: ubuntu-latest
+    env:
+      OUTPUTS: ${{ toJson(needs.DeterminateCI.outputs) }}
     steps:
-      - run: echo ${{ toJson(needs.DeterminateCI.outputs) }}
+      - run: echo "$OUTPUTS"

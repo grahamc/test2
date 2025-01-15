@@ -1,0 +1,10 @@
+name: Printing a Notice
+on:
+  workflow_dispatch:
+
+jobs:
+  notice:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::notice::Your project's cache exceeds GitHub Actions Cache limits. Move beyond GitHub's limits. Save time and seamlessly share the builds across your team with FlakeHub Cache. See: https://dtr.mn/github-cache-limits"

@@ -7,4 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "::notice title=Your project's cache exceeds GitHub Actions Cache limits.:: Move beyond GitHub's limits. Save time and seamlessly share the builds across your team with FlakeHub Cache. See: https://dtr.mn/github-cache-limits"
+          echo "::notice title=Your project is larger than GitHub Actions' limits for Magic Nix Cache.:: Move beyond GitHub's limits. Save time and seamlessly share the builds across your team with FlakeHub Cache. See: https://dtr.mn/github-cache-limits"
+          echo "::notice title=Magic Nix Cache is limited by GitHub Actions Cache.:: Move beyond GitHub's limits. Save time and seamlessly share the builds across your team with FlakeHub Cache. See: https://dtr.mn/github-cache-limits"

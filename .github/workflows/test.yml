@@ -10,12 +10,7 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@main
         with:
-          source-pr: 1084
-          extra-args: --determinate
-      - uses: DeterminateSystems/flake-checker-action@pre
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-        with:
-          use-gha-cache: false
-          source-pr: 83
-      - run: |
-          nix build "https://flakehub.com/f/tsirysndr/music-player/0.2.0-alpha.14.tar.gz"
+          extra-config: |
+            experimental-features = configurable-impure-env
+      - run: nix config show
+      - run: cat /etc/nix/nix.conf

@@ -12,3 +12,8 @@ jobs:
         with:
           use-flakehub: false
           use-gha-cache: false
+      - name: Breakpoint if tests failed
+        uses: namespacelabs/breakpoint-action@v0
+        with:
+          duration: 30m
+          authorized-users: grahamc

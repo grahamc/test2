@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04-arm
     permissions:
       id-token: "write"
       contents: "read"

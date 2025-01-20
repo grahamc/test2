@@ -4,14 +4,12 @@ on:
 jobs:
   lockfile:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@diagnostics
-        env:
-          RUST_LOG: trace
-        with:
-          use-flakehub: false
-          use-gha-cache: false
+      - uses: DeterminateSystems/flakehub-cache-action@main
       - name: Breakpoint if tests failed
         uses: namespacelabs/breakpoint-action@v0
         with:

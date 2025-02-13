@@ -11,6 +11,12 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           determinate: true
+      - name: Breakpoint if tests failed
+        uses: namespacelabs/breakpoint-action@v0
+        with:
+          duration: 30m
+          authorized-users: grahamc
+
       - run: cat /etc/nix/nix.conf
         if: success() || failure()
       - run: cat /etc/nix/nix.custom.conf

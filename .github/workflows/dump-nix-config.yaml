@@ -13,6 +13,9 @@ jobs:
           determinate: true
       - run: cat /etc/nix/nix.conf
       - run: cat /etc/nix/nix.custom.conf
+      - run: nix run  -vvvv https://flakehub.com/f/DeterminateSystems/flake-iter/0
+      - run: nix-collect-garbage
       - uses: DeterminateSystems/flakehub-cache-action@main
       - run: cat /etc/nix/nix.conf
       - run: cat /etc/nix/nix.custom.conf
+      - run: nix run  -vvvv https://flakehub.com/f/DeterminateSystems/flake-iter/0

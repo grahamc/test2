@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch: # allows manual triggering
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          determinate: true
+      - run: cat /etc/nix/nix.conf
+      - run: cat /etc/nix/nix.custom.conf
+      - uses: DeterminateSystems/flakehub-cache-action@main
+      - run: cat /etc/nix/nix.conf
+      - run: cat /etc/nix/nix.custom.conf

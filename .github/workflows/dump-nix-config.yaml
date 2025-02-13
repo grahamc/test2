@@ -12,10 +12,18 @@ jobs:
         with:
           determinate: true
       - run: cat /etc/nix/nix.conf
+        if: success() || failure()
       - run: cat /etc/nix/nix.custom.conf
+        if: success() || failure()
       - run: nix run  -vvvv https://flakehub.com/f/DeterminateSystems/flake-iter/0
+        if: success() || failure()
       - run: nix-collect-garbage
+        if: success() || failure()
       - uses: DeterminateSystems/flakehub-cache-action@main
+        if: success() || failure()
       - run: cat /etc/nix/nix.conf
+        if: success() || failure()
       - run: cat /etc/nix/nix.custom.conf
+        if: success() || failure()
       - run: nix run  -vvvv https://flakehub.com/f/DeterminateSystems/flake-iter/0
+        if: success() || failure()

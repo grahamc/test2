@@ -4,6 +4,8 @@ on:
       idempotencyKey:
         type: string
         default: ""
+env:
+  IDEMPOTENCY_KEY: ${{ inputs.idempotencyKey }}
 jobs:
   tests:
     runs-on: ubuntu-24.04-arm

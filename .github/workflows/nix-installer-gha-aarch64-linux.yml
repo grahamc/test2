@@ -4,8 +4,6 @@ on:
       idempotencyKey:
         type: string
         default: ""
-env:
-  IDEMPOTENCY_KEY: ${{ inputs.idempotencyKey }}
 jobs:
   tests:
     runs-on: ubuntu-24.04-arm
@@ -13,6 +11,8 @@ jobs:
       id-token: "write"
       contents: "read"
     steps:
+      - name: idem/${{ inputs.idempotencyKey }}
+        run: true
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@main
       - name: Breakpoint if tests failed

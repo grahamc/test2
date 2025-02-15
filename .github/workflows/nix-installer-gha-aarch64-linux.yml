@@ -15,6 +15,7 @@ jobs:
         run: true
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@main
+      - run: sleep 7
       - name: Breakpoint if tests failed
         if: failure()
         uses: namespacelabs/breakpoint-action@v0

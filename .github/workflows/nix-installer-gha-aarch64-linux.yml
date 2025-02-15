@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+    inputs:
+      idempotencyKey:
+        type: string
+        default: ""
 jobs:
   tests:
     runs-on: ubuntu-24.04-arm

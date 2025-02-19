@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  a:
+    environment: env-a
+    runs-on: ubuntu-latest
+    steps:
+      - run: "sleep 30"
+
+  b:
+    needs: [ a ]
+    runs-on: ubuntu-latest
+    steps:
+      - run: "sleep 30"
+      

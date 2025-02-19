@@ -9,6 +9,7 @@ jobs:
       - run: "sleep 30"
 
   b:
+    environment: env-a
     needs: [ a ]
     runs-on: ubuntu-latest
     steps:

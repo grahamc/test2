@@ -1,0 +1,42 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  make-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+    env:
+      GIT_COMMITTER_NAME: example
+      GIT_COMMITTER_EMAIL: example@example.com
+      GIT_AUTHOR_NAME: example
+      GIT_AUTHOR_EMAIL: example@example.com
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "step-1" >> log
+          touch step-1
+          git add log step-1
+          git commit -m "step-1"
+      - run: |
+          echo "step-2" >> log
+          touch step-2
+          git add log step-2
+          git commit -m "step-2"
+      - run: |
+          echo "step-3" >> log
+          touch step-3
+          git add log step-3
+          git commit -m "step-23
+        
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: example-patches
+          delete-branch: true
+          sign-commits: true
+          title: step 1, 2, and 3
+          body: |
+            hello world

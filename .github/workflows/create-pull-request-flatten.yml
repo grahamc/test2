@@ -30,7 +30,7 @@ jobs:
           echo "step-3" >> log
           touch step-3
           git add log step-3
-          git commit -m "step-23
+          git commit -m "step-3"
         
       - uses: peter-evans/create-pull-request@v7
         with:

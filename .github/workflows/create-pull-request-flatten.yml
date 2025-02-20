@@ -33,7 +33,7 @@ jobs:
           git add log
           git commit -m "step-3"
         
-      - uses: peter-evans/create-pull-request@v7
+      - uses: DeterminateSystems/create-pull-request@showFileAtRef
         with:
           branch: example-patches
           delete-branch: true

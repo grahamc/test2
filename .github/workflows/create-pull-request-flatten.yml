@@ -18,18 +18,15 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           echo "step-1" >> log
-          touch step-1
-          git add log step-1
+          git add log
           git commit -m "step-1"
       - run: |
           echo "step-2" >> log
-          touch step-2
-          git add log step-2
+          git add log
           git commit -m "step-2"
       - run: |
           echo "step-3" >> log
-          touch step-3
-          git add log step-3
+          git add log
           git commit -m "step-3"
         
       - uses: peter-evans/create-pull-request@v7

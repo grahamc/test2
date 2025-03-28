@@ -6,4 +6,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@curl-data
-      - run: nix build ./hash-mismatch.nix
+      - run: nix build -f ./hash-mismatch.nix

@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: DeterminateSystems/nix-installer-action@curl-data
+      - uses: DeterminateSystems/nix-installer-action@hash-mismatch-annotations
         with:
           determinate: true
       - run: nix build -f ./hash-mismatch.nix

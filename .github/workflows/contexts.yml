@@ -17,29 +17,30 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: DeterminateSystems/nix-installer-action@main
       - name: Dump general environment
         run: env | sort
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: echo "$GITHUB_CONTEXT" | nix run nixpkgs#gron
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJson(job) }}
-        run: echo "$JOB_CONTEXT"
+        run: echo "$JOB_CONTEXT" | nix run nixpkgs#gron
       - name: Dump steps context
         env:
           STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
+        run: echo "$STEPS_CONTEXT" | nix run nixpkgs#gron
       - name: Dump runner context
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
-        run: echo "$RUNNER_CONTEXT"
+        run: echo "$RUNNER_CONTEXT" | nix run nixpkgs#gron
       - name: Dump strategy context
         env:
           STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
+        run: echo "$STRATEGY_CONTEXT" | nix run nixpkgs#gron
       - name: Dump matrix context
         env:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
+        run: echo "$MATRIX_CONTEXT" | nix run nixpkgs#gron

@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          determinate: true
       - name: prefetch gron
         run: echo '{}' | nix run nixpkgs#gron
       - name: Dump general environment

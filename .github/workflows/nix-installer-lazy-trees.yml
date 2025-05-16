@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: DeterminateSystems/determinate-nix-action@v3
         with:
-          extra-config:
+          extra-conf:
             lazy-trees = true
       - run: nix config show

@@ -3,12 +3,14 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    #permissions:
-    #  id-token: "write"
-    #  contents: "read"
+    permissions:
+      id-token: "write"
+      contents: "read"
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/nix-installer-action@push-yyvrlpyxqswn
+        with:
+          determinate: true
       - run: nix store info --store 'https://cache.flakehub.com'
       - run: nix config show
       - run: cat /etc/nix/nix.conf

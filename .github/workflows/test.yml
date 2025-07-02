@@ -12,6 +12,9 @@ jobs:
         with:
           determinate: true
       - run: cat /var/lib/determinate/identity.json || true
+      - run: cat /nix/var/determinate/identity.json || true
+      - run: cat /nix/receipt.json || true
+      
       - run: nix store info --store 'https://cache.flakehub.com'
       - run: nix config show
       - run: cat /etc/nix/nix.conf

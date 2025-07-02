@@ -11,6 +11,7 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@push-yyvrlpyxqswn
         with:
           determinate: true
+      - run: cat /var/lib/determinate/identity.json || true
       - run: nix store info --store 'https://cache.flakehub.com'
       - run: nix config show
       - run: cat /etc/nix/nix.conf

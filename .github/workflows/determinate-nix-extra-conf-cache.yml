@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: "write"
+      contents: "read"
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: DeterminateSystems/determinate-nix-action@main
+        with:
+          extra-conf: |
+            lazy-trees = true
+            extra-substituters = https://cloud-scythe-labs.cachix.org
+            extra-trusted-public-keys = cloud-scythe-labs.cachix.org-1:I+IM+x2gGlmNjUMZOsyHJpxIzmAi7XhZNmTVijGjsLw=
+      - run: nix config show

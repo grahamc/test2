@@ -7,14 +7,15 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-    - id: set-matrix
-      run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
-    - id: set-steps
-      run: echo "::set-output name=steps::[{\"run\":\"echo hi\"}]"
-      
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
-    steps: ${{ fromJson(needs.job1.outputs.steps) }}
+      - id: set-matrix
+        run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+      - id: set-steps
+        run: echo "::set-output name=steps::[{\"run\":\"echo hi\"}]"
+
+# This is not valid!
+#  job2:
+#    needs: job1
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+#    steps: ${{ fromJson(needs.job1.outputs.steps) }}

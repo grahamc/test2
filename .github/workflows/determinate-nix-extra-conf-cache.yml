@@ -20,4 +20,4 @@ jobs:
           use-gha-cache: true
           upstream-cache: https://cloud-scythe-labs.cachix.org
       - run: nix config show
-      - run: curl 'http://127.0.0.1:37515/?trusted=1&compression=zstd&parallel-compression=true&priority=1'
+      - run: curl 'http://127.0.0.1:37515/nix-cache-info?trusted=1&compression=zstd&parallel-compression=true&priority=1'

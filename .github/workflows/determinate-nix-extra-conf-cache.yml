@@ -17,5 +17,6 @@ jobs:
       - run: nix config show
       - uses: DeterminateSystems/magic-nix-cache-action@main
         with:
+          use-gha-cache: true
           upstream-cache: https://cloud-scythe-labs.cachix.org
       - run: nix config show

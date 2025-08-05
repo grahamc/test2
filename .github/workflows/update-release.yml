@@ -4,6 +4,9 @@ on:
 jobs:
   notice:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Update the release notes

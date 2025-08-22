@@ -8,7 +8,9 @@ jobs:
       id-token: write # Authenticate against FlakeHub
       contents: read
     steps:
-      - uses: "actions/checkout@v3"
+      - uses: "actions/checkout@main"
+        with:
+          persist-credentials: false
       - uses: "DeterminateSystems/nix-installer-action@main"
       - run: nix show-config
       - uses: "DeterminateSystems/flakehub-push@main"

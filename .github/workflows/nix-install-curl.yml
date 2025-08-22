@@ -1,0 +1,8 @@
+on:
+  workflow_dispatch:
+jobs:
+  pass:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix/pr/1637 | sh -s -- install

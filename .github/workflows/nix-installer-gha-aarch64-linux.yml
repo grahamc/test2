@@ -14,7 +14,7 @@ jobs:
       - name: idem/${{ inputs.idempotencyKey }}
         run: true
       - uses: actions/checkout@v4.1.1
-      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/nix-installer-action@v20
       - run: sleep 7
       - name: Breakpoint if tests failed
         if: failure()

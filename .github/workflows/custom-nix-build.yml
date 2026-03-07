@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch: # allows manual triggering
+
+env:
+  NIX_INSTALLER_NIX_PACKAGE_URL: "https://install.determinate.systems/determinate-nix/rev/461106eb0860396cacefb0de077960d08206b43b/x86_64-linux"
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@push-ytslqpsuuxpk
+
+      - uses: DeterminateSystems/flakehub-cache-action@main
+
+
+      - run: |
+          nix build  -Lv --impure --expr 'derivation { name = "hello-${builtins.toString builtins.currentTime}"; system = "x86_64-linux"; builder = "/bin/sh"; args = ["-c" "echo $out; echo hi > $out" ]; }'

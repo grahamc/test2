@@ -12,9 +12,12 @@ jobs:
       contents: read
     steps:
       - uses: DeterminateSystems/nix-installer-action@push-ytslqpsuuxpk
-
+        with:
+          extra-conf: |
+              extra-experimental-features = provenance
       - uses: DeterminateSystems/flakehub-cache-action@main
 
 
       - run: |
+          cat /etc/nix/nix.conf
           nix build  -Lv --impure --expr 'derivation { name = "hello-${builtins.toString builtins.currentTime}"; system = "x86_64-linux"; builder = "/bin/sh"; args = ["-c" "echo $out; echo hi > $out" ]; }'

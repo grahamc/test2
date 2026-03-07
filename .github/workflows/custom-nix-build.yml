@@ -22,4 +22,5 @@ jobs:
           set -x
           cat /etc/nix/nix.conf || true
           cat /etc/nix/nix.custom.conf || true
+          nix config show
           nix build  -Lv --impure --expr 'derivation { name = "hello-${builtins.toString builtins.currentTime}"; system = "x86_64-linux"; builder = "/bin/sh"; args = ["-c" "echo $out; echo hi > $out" ]; }'

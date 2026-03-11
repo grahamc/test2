@@ -16,6 +16,8 @@ jobs:
           extra-conf: |
               extra-experimental-features = provenance
       - uses: DeterminateSystems/flakehub-cache-action@main
+        with:
+          source-revision: 882a42b492b200dfb3b0e6668d4800c89f697301
 
 
       - run: |

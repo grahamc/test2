@@ -2,7 +2,7 @@ on:
   workflow_dispatch: # allows manual triggering
 
 env:
-  NIX_INSTALLER_NIX_PACKAGE_URL: "https://install.determinate.systems/determinate-nix/rev/461106eb0860396cacefb0de077960d08206b43b/x86_64-linux"
+  NIX_INSTALLER_NIX_PACKAGE_URL: "https://install.determinate.systems/determinate-nix/rev/a60c4dba1f1f14168f3669af5ece96c2425a880c/x86_64-linux"
 
 jobs:
   lockfile:
